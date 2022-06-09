@@ -14,7 +14,7 @@
 2. [Imagen estática de la ciudad o porción de ciudad elegida](imagen-estática-de-la-ciudad-o-porción-de-ciudad-elegida)
 3. [Descripción de los datos consignados por calle](descripción-de-los-datos-consignados-por-calle)
 4. [Descripción de la información consignada por intersección](descripción-de-la-información-consignada-por-intersección)
-5. [Explicación de cómo se elaboró el grafo, qué representan las aristas y los vértices](explicación-de-cómo-se-elaboró-el-grafo,-qué-representan-las-aristas-y-los-vértices)
+5. [Explicación de cómo se elaboró el grafo, qué representan las aristas y los vértices](explicación-de-cómo-se-elaboró-el-grafo,-qué-representan-las-aristas y-los-vértices)
 6. [Explicación del cálculo de la distancia entre dos puntos geográficos](explicación-del-cálculo-de-la-distancia-entre-dos-puntos-geográficos)
 7. [Explicación de la implementación del factor tiempo del tráfico](explicación-de-la-implementación-del-factor-tiempo-del-tráfico)
 8. [Explicación de la implementación de la variabilidad del tráfico por zonas](explicación-de-la-implementación-de-la-variabilidad-del-tráfico-por-zonas)
@@ -23,10 +23,7 @@
 Para el presente trabajo, se ha procesado la información de las intersecciones de calles de la ciudad de San Francisco, California, Estados Unidos, almacenándolas mediante la creación de un grafo, en formato de listas de adyacencia. Para ello, se tomaron los interceptos como coordenadas con latitud y longitud, las cuales fueron representadas en el grafo como números enteros desde el 0 hasta 9644 (cantidad de interceptos menos 1).
 
 ## Imagen estática de la ciudad o porción de ciudad elegida.
-<p align="center">
-<img src="https://github.com/z3r0st/TF-201711448-20181C074-202021767/blob/main/img/san_francisco.png" width="600"/>
-</p>
-
+![San Francisco](https://github.com/z3r0st/TF-201711448-20181C074-202021767/blob/main/img/san_francisco.png)
 
 # Descripción de los datos consignados por calle
 Para la realización o representación de los interceptos por calle se tomó en consideración el nombre de la calle, en conjunto con todas las calles con las que intersectan. Teniendo en un inicio un conjunto del tipo:<br>
@@ -101,57 +98,6 @@ Luego, tenemos la función donde se crea el grafo (la lista de adyacencia). Dent
 
 Finalmente, se genera grafo con la función creada y los datos guardados del dataset.
 
-# Explicación del cálculo de la distancia entre puntos
-Para el cálculo de la distancia entre puntos se omitió la idea de realizarlo por un método euclidiano debido a que este proceso omitía la curvatura de la Tierra. En cambio, se optó por usar la fórmula de Haversine.
-La fórmula de Haversine es muy usada para el cálculo de distancias entre dos puntos de un globo sabiendo su longitud y su latitud.
-Esta forma parte de la ley de los semiversenos, la cual se expresa de la siguiente manera:
-
-semiversin(d/R) = semiversin(latitud1 - latitud2) + cos(latitud1)cos(latitud2)semiversin(longitud1-longitud2)
-
-Donde:
-* *semiversin:* Función semiverseno equivalente a sin2(angulo/2), donde el ángulo está en radianes, y sin2 equivale a la función seno elevado al cuadrado
-* *d:* Distancia entre dos puntos en una esfera.
-* *R:* Radio de la esfera.
-* *Latitud1:* Latitud del punto 1
-* *Latitu2:* Latitud del punto 2
-* *Longitud1:* Longitud del punto 1
-* *Longitud2:* Longitud del punto 2
-
-Cabe resaltar que ambas diferencias (diferencias entre longitudes y latitudes) deben estar expresadas en radianes, ya que el valor entrante se encuentra en grados/minutos/segundos.
-
-Para el cálculo de la distancia, fue necesario primero, una función de conversión a radianes, lo cual resultó en un simple proceso de conversión:
-
-angulo_en_radianes = angulo_en_grados*pi/180
-
-Segundo, fue necesario convertir la ley de los semiversenos a funciones conocidas por el entorno, para ello fue necesario la equivalencia:
-
-
-sen2(d/(R*2)) = sen2((latitud1 - latitud2)/2) + cos(latitud1)cos(latitud2)sen2((longitud1-longitud2)/2)
-
-Como todo el resultado del lado derecho es un cálculo con puras constantes, almacenaremos el valor en una variable cualquiera,
-
-c = sen2((latitud1 - latitud2)/2) + cos(latitud1)cos(latitud2)sen2((longitud1-longitud2)/2)
-
-Entonces tenemos que:
-
-sen2(d/(R*2)) = c
-
-sen(d/(R*2)) = sqrt(c)
-
-Para el cálculo "d", se procedió a realizar la siguiente expresión:
-
-d/(R*2) = arctan(sqrt(c)/sqrt(1-c))
-
-Por último tenemos que:
-
-d = 2*R*arctan(sqrt(c)/sqrt(1-c))
-
-Almacenando los procesos de conversión de grados a radianes, calculando con los valores de ingreso la constante "c", y por último asumiendo un radio fijo para la Tierra (la Tierra no es netamente un globo) pero aproximado (usando el radio equivolumen), es que logramos capturar obtener el valor de la distancia de un punto a otro.
-
-# Explicación de la implementación del factor tiempo del tráfico
-
-Para la creación de un tráfico más preciso y realista se ha implementado un factor tiempo teniendo en cuenta las horas pico durante el día. Se implementó la función **timeFactor** la cual recibe una hora y retorna un subarray del array **timeToTraffic**, creado manualmente, el cual contiene un factor mínimo y máximo. Estos dos valores se usan en la siguiente función llamada **addTraffic** para la implementación total de los pesos en el grafo.
-
 # Explicación de la implementación de la variabilidad del tráfico por zonas
 
 Para concebir el tráfico, se formuló un modelo de dos capas, donde la primera capa es el tiempo y la segunda la zona (de la ciudad). Según el tiempo, como se explicó, se asigna un factor mínimo y máximo, que son descriptivos de la magnitud del tráfico vehicular en un intervalo de una hora. El mínimo es un multiplicador fijo, al cual se le añade, **dependiendo de la zona**, un valor entre 0 y la diferencia entre el factor máximo y mínimo:
@@ -176,6 +122,10 @@ Ya que el tráfico no sigue patrones completamente aleatorios, donde una calle t
 [Fuente: Artículo de Khan Academy](https://www.khanacademy.org/computing/computer-programming/programming-natural-simulations/programming-noise/a/perlin-noise)
 
 
-Específicamente, se utilizó la función de ruido Perlin-Noise, que recibe uno o más valores de entrada y retorna un número entre -1 y 1. La particularidad es que cuanto más cercanos sean los valores de entrada, habrá una cercanía entre los valores de salida.
+Específicamente, se utilizó la función de ruido Perlin-Noise, que recibe uno o más valores de entrada y retorna un número entre -1 y 1, como regla general. La particularidad es que cuanto más cercanos sean los valores de entrada, habrá una cercanía entre los valores de salida.
 
-Para cada arista, se calculó unas coordenadas promedio (tomando las coordenadas de los dos interceptos que la limitan) y se ingresó el valor de latitud y longitud como argumentos a la función de ruido. Luego, se sumó 1 al resultado y se aplicó un reescalamiento lineal para pasar del rango [-1, 1] a [0, 2] y finalmente a [0, fMax - fMin].
+Para cada arista, se calculó unas coordenadas promedio (tomando las coordenadas de los dos interceptos que la limitan) y se ingresó el valor de latitud y longitud como argumentos a la función de ruido. Es necesario precisar que el rango de Perlin Noise depende de la cantidad de dimensiones (determinada por la cantidad de parámetros de entrada):
+
+*rango = [−√N/4,√N/4]*
+
+Por lo tanto, al ingresar dos valores de entrada, se trabaja con dos dimensiones y el rango de salida es [-0.707, 0.707]. Por ello, se sumó 0.707 al resultado y se aplicó un reescalamiento lineal para pasar del rango [-0.707, 0.707] a [0, 1.414] y finalmente a [0, fMax - fMin].
