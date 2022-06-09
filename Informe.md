@@ -23,17 +23,17 @@ Para el presente trabajo, se ha procesado la información de las intersecciones 
 ![San Francisco]()
 
 # Descripción de los datos consignados por calle
-Para la realización o representación de los interceptos por calle se tomó en consideración el nombre de la calle, en conjunto con todas las calles con las que intersectan. Teniendo en un inicio un conjunto del tipo:
-***Street_name** : [(latitude_1, longitude_1), (latitude_2, longitude_2), (latitude_3, longitude_4),...]*<br>
-El mismo dato que sería almacenado en un diccionario (intercepts) que contenga todos los interceptos por calle (hash/llave).
-*intercepts= {‘street_name_1’: [(latitude_1, longitude_1), (latitude_2, longitude_2),...], ‘street_name_2’:
-…}*
+Para la realización o representación de los interceptos por calle se tomó en consideración el nombre de la calle, en conjunto con todas las calles con las que intersectan. Teniendo en un inicio un conjunto del tipo:<br>
+***Street_name** : [(latitude_1, longitude_1), (latitude_2, longitude_2), (latitude_3, longitude_4),...]*
+
+El mismo dato que sería almacenado en un diccionario (intercepts) que contenga todos los interceptos por calle (hash/llave).<br>
+*intercepts= {‘street_name_1’: [(latitude_1, longitude_1), (latitude_2, longitude_2),...], ‘street_name_2’:…}*
 
 ### Descripción de las variables:
-**intercepts**: Nombre del diccionario de interceptos por calle.
-**street_name_n** : Nombre de una calle capturado desde el dataset o conjunto de datos.
-**latitud_n, longitud_n** : Coordenadas de la calle donde intersecta con otra.
-<br>
+* **intercepts**: Nombre del diccionario de interceptos por calle.
+* **street_name_n** : Nombre de una calle capturado desde el dataset o conjunto de datos.
+* **latitud_n, longitud_n** : Coordenadas de la calle donde intersecta con otra.
+
 Por ejemplo, tomando como referencia las dos primeras líneas del dataset, se tendría la siguiente estructura capturada:
 
 | CNN | ST_NAME | the_geom | ST_TYPE | CNNTEXT |
@@ -43,21 +43,27 @@ Por ejemplo, tomando como referencia las dos primeras líneas del dataset, se te
 
 ### Descripción de los datos:
 Entonces, la información que nos consigna guardar sería:
+
 1. ‘Street_name_1’: ‘UTAH’
 	+ Primer intercepto - primera calle:
 	+ latitude_1: -122.40545417189192
 	+ longitude_1: 37.75433723137436
+	
 2. ‘Street_name_2’: ‘JOOST’
 	+ Primer intercepto - segunda calle:
 	+ latitude_1: -122.43974776014164
 	+ longitude_1: 37.73236806396732
-<br>
+
 **Nota: Tanto latitud y longitud son contenidos en una tupla (intercepto) para una mejor organización de la lista contenida por llave/hash (street_name_n).**
 
 # Descripción de la información consignada por intersección.
+
 Para la realización o representación de los interceptos o intersección se tomó en consideración el punto de intersección, en conjunto con todas las calles que incurren en él. Teniendo en un inicio un conjunto del tipo:
+
 	*Intercept: [‘street_name_1’, ‘street_name2’]*
+	
 El mismo dato que sería almacenado en un diccionario (streets) que contenga todos las calles por intercepto(hash/llave).
+
 *streets= {intercept_1: [‘street_name_1’, ‘street_name_2’], intercept_2: …}*
 + **streets**: Nombre del diccionario de calles por intercepto.
 + **intecerpt_n**: Punto de intersección de un conjunto de calles (**del dataset extraído generalmente 2**).
@@ -69,15 +75,16 @@ El mismo dato que sería almacenado en un diccionario (streets) que contenga tod
 | 22141000 | JOOST | POINT (-122.43974776014164 37.73236806396732) | AVE | 22141000 |
 
 Entonces, la información que nos consigna guardar sería:
-* intercept_1: ( -122.40545417189192, 37.75433723137436)
-*Primera calle - primer intercepto:*
+* intercept_1: ( -122.40545417189192, 37.75433723137436)<br>
+*Primera calle - primer intercepto:*<br>
 * ‘Street_name_1’: ‘UTAH’
 
-* intercept_2: (-122.43974776014164, 37.73236806396732)
-*Primera calle - segundo intercepto:*
+* intercept_2: (-122.43974776014164, 37.73236806396732)<br>
+*Primera calle - segundo intercepto:*<br>
 * ‘Street_name_1’: ‘JOOST’
 
 # Explicación de cómo se elaboró el grafo, qué representan las aristas y los vértices.
+
 Primero, realizamos la lectura del dataset en dónde consideramos la latitud y la longitud de las conexiones entre calles para crear los interceptos. Se utilizan 4 diccionarios en total: 
 * **Intercepts**: permite acceder a todos los puntos interceptos que conforman la calle ingresada como llave.
 * **Streets**: permite acceder a todas calles a las cuales pertenece un intercepto, por lo general 2 calles.
