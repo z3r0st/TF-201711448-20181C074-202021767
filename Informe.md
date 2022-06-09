@@ -114,10 +114,10 @@ Donde:
 Ya que el tráfico no sigue patrones completamente aleatorios, donde una calle tendría un atasco y la siguiente estaría fluida, se optó por utilizar un generador de números seudo-aleatorios, que produce resultados más naturales, al suavizar la aleatoreidad. A continuación se presentan dos imágenes para ilustrar el contraste:
 
 Función aleatoria a lo largo del tiempo
-[Random function](https://github.com/z3r0st/TF-201711448-20181C074-202021767/blob/main/img/random.png)
+![Random function](https://github.com/z3r0st/TF-201711448-20181C074-202021767/blob/main/img/random.png)
 
 Función suedo-aleatoria a lo largo del tiempo
-[Pseudo-random function](https://github.com/z3r0st/TF-201711448-20181C074-202021767/blob/main/img/pseudo-random.png)
+![Pseudo-random function](https://github.com/z3r0st/TF-201711448-20181C074-202021767/blob/main/img/pseudo-random.png)
 
 [Fuente: Artículo de Khan Academy](https://www.khanacademy.org/computing/computer-programming/programming-natural-simulations/programming-noise/a/perlin-noise)
 
