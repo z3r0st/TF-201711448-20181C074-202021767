@@ -23,7 +23,10 @@
 Para el presente trabajo, se ha procesado la información de las intersecciones de calles de la ciudad de San Francisco, California, Estados Unidos, almacenándolas mediante la creación de un grafo, en formato de listas de adyacencia. Para ello, se tomaron los interceptos como coordenadas con latitud y longitud, las cuales fueron representadas en el grafo como números enteros desde el 0 hasta 9644 (cantidad de interceptos menos 1).
 
 ## Imagen estática de la ciudad o porción de ciudad elegida.
-![San Francisco](https://github.com/z3r0st/TF-201711448-20181C074-202021767/blob/main/img/san_francisco.png)
+<p align="center">
+<img src="https://github.com/z3r0st/TF-201711448-20181C074-202021767/blob/main/img/san_francisco.png" width="600"/>
+</p>
+
 
 # Descripción de los datos consignados por calle
 Para la realización o representación de los interceptos por calle se tomó en consideración el nombre de la calle, en conjunto con todas las calles con las que intersectan. Teniendo en un inicio un conjunto del tipo:<br>
