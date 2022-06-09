@@ -14,7 +14,7 @@
 2. [Imagen estática de la ciudad o porción de ciudad elegida](imagen-estática-de-la-ciudad-o-porción-de-ciudad-elegida)
 3. [Descripción de los datos consignados por calle](descripción-de-los-datos-consignados-por-calle)
 4. [Descripción de la información consignada por intersección](descripción-de-la-información-consignada-por-intersección)
-5. [Explicación de cómo se elaboró el grafo, qué representan las aristas y los vértices](explicación-de-cómo-se-elaboró-el-grafo,-qué-representan-las-aristas-y-los-vértices)
+5. [Explicación de cómo se elaboró el grafo, qué representan las aristas y los vértices](explicación-de-cómo-se-elaboró-el-grafo,-qué-representan-las-aristas y-los-vértices)
 6. [Explicación del cálculo de la distancia entre dos puntos geográficos](explicación-del-cálculo-de-la-distancia-entre-dos-puntos-geográficos)
 7. [Explicación de la implementación del factor tiempo del tráfico](explicación-de-la-implementación-del-factor-tiempo-del-tráfico)
 8. [Explicación de la implementación de la variabilidad del tráfico por zonas](explicación-de-la-implementación-de-la-variabilidad-del-tráfico-por-zonas)
@@ -97,6 +97,53 @@ Primero, realizamos la lectura del dataset en dónde consideramos la latitud y l
 Luego, tenemos la función donde se crea el grafo (la lista de adyacencia). Dentro creamos una función dónde calculamos la distancia entre el intercepto que se está evaluando y los otros interceptos de cada calle a las cuales pertenece. Este proceso se realiza para cada calle a la que pertenece el intercepto, y se almacena los datos en la lista distance, que almacena listas anidadas, cada una conteniendo el nodo y la distancia respecto al intercepto en evaluación. Luego, se ordena la lista según la distancia y se almacenan los dos más cercanos en la lista neighbours. Luego, se verifica si ambos vecinos son adyacentes por lados opuestos o si son dos nodos que se encuentran en la misma dirección. Dependiendo de esta validación, se añade respectivamente el nodo más cercano o ambos. Finalmente se devuelve el grafo creado.
 
 Finalmente, se genera grafo con la función creada y los datos guardados del dataset.
+
+# Explicación del cálculo de la distancia entre puntos
+Para el cálculo de la distancia entre puntos se omitió la idea de realizarlo por un método euclidiano debido a que este proceso omitía la curvatura de la Tierra. En cambio, se optó por usar la fórmula de Haversine.
+La fórmula de Haversine es muy usada para el cálculo de distancias entre dos puntos de un globo sabiendo su longitud y su latitud.
+Esta forma parte de la ley de los semiversenos, la cual se expresa de la siguiente manera:
+
+semiversin(d/R) = semiversin(latitud1 - latitud2) + cos(latitud1)cos(latitud2)semiversin(longitud1-longitud2)
+
+Donde:
+* *semiversin:* Función semiverseno equivalente a sin2(angulo/2), donde el ángulo está en radianes, y sin2 equivale a la función seno elevado al cuadrado
+* *d:* Distancia entre dos puntos en una esfera.
+* *R:* Radio de la esfera.
+* *Latitud1:* Latitud del punto 1
+* *Latitu2:* Latitud del punto 2
+* *Longitud1:* Longitud del punto 1
+* *Longitud2:* Longitud del punto 2
+
+Cabe resaltar que ambas diferencias (diferencias entre longitudes y latitudes) deben estar expresadas en radianes, ya que el valor entrante se encuentra en grados/minutos/segundos.
+
+Para el cálculo de la distancia, fue necesario primero, una función de conversión a radianes, lo cual resultó en un simple proceso de conversión:
+
+angulo_en_radianes = angulo_en_grados*pi/180
+
+Segundo, fue necesario convertir la ley de los semiversenos a funciones conocidas por el entorno, para ello fue necesario la equivalencia:
+
+
+sen2(d/(R*2)) = sen2((latitud1 - latitud2)/2) + cos(latitud1)cos(latitud2)sen2((longitud1-longitud2)/2)
+
+Como todo el resultado del lado derecho es un cálculo con puras constantes, almacenaremos el valor en una variable cualquiera,
+
+c = sen2((latitud1 - latitud2)/2) + cos(latitud1)cos(latitud2)sen2((longitud1-longitud2)/2)
+
+Entonces tenemos que:
+
+sen2(d/(R*2)) = c
+
+sen(d/(R*2)) = sqrt(c)
+
+Para el cálculo "d", se procedió a realizar la siguiente expresión:
+
+d/(R*2) = arctan(sqrt(c)/sqrt(1-c))
+
+Por último tenemos que:
+
+d = 2*R*arctan(sqrt(c)/sqrt(1-c))
+
+Almacenando los procesos de conversión de grados a radianes, calculando con los valores de ingreso la constante "c", y por último asumiendo un radio fijo para la Tierra (la Tierra no es netamente un globo) pero aproximado (usando el radio equivolumen), es que logramos capturar obtener el valor de la distancia de un punto a otro.
 
 # Explicación de la implementación de la variabilidad del tráfico por zonas
 
