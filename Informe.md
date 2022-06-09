@@ -14,7 +14,7 @@
 2. [Imagen estática de la ciudad o porción de ciudad elegida](imagen-estática-de-la-ciudad-o-porción-de-ciudad-elegida)
 3. [Descripción de los datos consignados por calle](descripción-de-los-datos-consignados-por-calle)
 4. [Descripción de la información consignada por intersección](descripción-de-la-información-consignada-por-intersección)
-5. [Explicación de cómo se elaboró el grafo, qué representan las aristas y los vértices](explicación-de-cómo-se-elaboró-el-grafo,-qué-representan-las-aristas y-los-vértices)
+5. [Explicación de cómo se elaboró el grafo, qué representan las aristas y los vértices](explicación-de-cómo-se-elaboró-el-grafo,-qué-representan-las-aristas-y-los-vértices)
 6. [Explicación del cálculo de la distancia entre dos puntos geográficos](explicación-del-cálculo-de-la-distancia-entre-dos-puntos-geográficos)
 7. [Explicación de la implementación del factor tiempo del tráfico](explicación-de-la-implementación-del-factor-tiempo-del-tráfico)
 8. [Explicación de la implementación de la variabilidad del tráfico por zonas](explicación-de-la-implementación-de-la-variabilidad-del-tráfico-por-zonas)
@@ -144,6 +144,10 @@ Por último tenemos que:
 d = 2*R*arctan(sqrt(c)/sqrt(1-c))
 
 Almacenando los procesos de conversión de grados a radianes, calculando con los valores de ingreso la constante "c", y por último asumiendo un radio fijo para la Tierra (la Tierra no es netamente un globo) pero aproximado (usando el radio equivolumen), es que logramos capturar obtener el valor de la distancia de un punto a otro.
+
+# Explicación de la implementación del factor tiempo del tráfico
+
+Para la creación de un tráfico más preciso y realista se ha implementado un factor tiempo teniendo en cuenta las horas pico durante el día. Se implementó la función **timeFactor** la cual recibe una hora y retorna un subarray del array **timeToTraffic**, creado manualmente, el cual contiene un factor mínimo y máximo. Estos dos valores se usan en la siguiente función llamada **addTraffic** para la implementación total de los pesos en el grafo.
 
 # Explicación de la implementación de la variabilidad del tráfico por zonas
 
