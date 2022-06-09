@@ -10,14 +10,14 @@
 ## Junio, 2022
 
 # Tabla de Contenidos
-1. Resumen Ejecutivo
-2. Imagen estática de la ciudad o porción de ciudad elegida.
-3. Descripción de los datos consignados por calle.
-4. Descripción de la información consignada por intersección.
-5. Explicación de cómo se elaboró el grafo, qué representan las aristas y los vértices.
-6. Explicación del cálculo de la distancia entre dos puntos geográficos
-7. Explicación de la implementación del factor tiempo del tráfico
-8. Explicación de la implementación de la variabilidad del tráfico por zonas
+1. [Resumen Ejecutivo](resumen-ejecutivo)
+2. [Imagen estática de la ciudad o porción de ciudad elegida](imagen-estática-de-la-ciudad-o-porción-de-ciudad-elegida)
+3. [Descripción de los datos consignados por calle](descripción-de-los-datos-consignados-por-calle)
+4. [Descripción de la información consignada por intersección](descripción-de-la-información-consignada-por-intersección)
+5. [Explicación de cómo se elaboró el grafo, qué representan las aristas y los vértices](explicación-de-cómo-se-elaboró-el-grafo,-qué-representan-las-aristas y-los-vértices)
+6. [Explicación del cálculo de la distancia entre dos puntos geográficos](explicación-del-cálculo-de-la-distancia-entre-dos-puntos-geográficos)
+7. [Explicación de la implementación del factor tiempo del tráfico](explicación-de-la-implementación-del-factor-tiempo-del-tráfico)
+8. [Explicación de la implementación de la variabilidad del tráfico por zonas](explicación-de-la-implementación-de-la-variabilidad-del-tráfico-por-zonas)
 
 # Resumen Ejecutivo
 Para el presente trabajo, se ha procesado la información de las intersecciones de calles de la ciudad de San Francisco, California, Estados Unidos, almacenándolas mediante la creación de un grafo, en formato de listas de adyacencia. Para ello, se tomaron los interceptos como coordenadas con latitud y longitud, las cuales fueron representadas en el grafo como números enteros desde el 0 hasta 9644 (cantidad de interceptos menos 1).
@@ -113,10 +113,10 @@ Donde:
 
 Ya que el tráfico no sigue patrones completamente aleatorios, donde una calle tendría un atasco y la siguiente estaría fluida, se optó por utilizar un generador de números seudo-aleatorios, que produce resultados más naturales, al suavizar la aleatoreidad. A continuación se presentan dos imágenes para ilustrar el contraste:
 
-Función aleatoria a lo largo del tiempo
+### Función aleatoria a lo largo del tiempo
 ![Random function](https://github.com/z3r0st/TF-201711448-20181C074-202021767/blob/main/img/random.png)
 
-Función suedo-aleatoria a lo largo del tiempo
+### Función suedo-aleatoria a lo largo del tiempo
 ![Pseudo-random function](https://github.com/z3r0st/TF-201711448-20181C074-202021767/blob/main/img/pseudo-random.png)
 
 [Fuente: Artículo de Khan Academy](https://www.khanacademy.org/computing/computer-programming/programming-natural-simulations/programming-noise/a/perlin-noise)
