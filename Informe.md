@@ -14,7 +14,7 @@
 2. [Imagen estática de la ciudad o porción de ciudad elegida](imagen-estática-de-la-ciudad-o-porción-de-ciudad-elegida)
 3. [Descripción de los datos consignados por calle](descripción-de-los-datos-consignados-por-calle)
 4. [Descripción de la información consignada por intersección](descripción-de-la-información-consignada-por-intersección)
-5. [Explicación de cómo se elaboró el grafo, qué representan las aristas y los vértices](explicación-de-cómo-se-elaboró-el-grafo,-qué-representan-las-aristas y-los-vértices)
+5. [Explicación de cómo se elaboró el grafo, qué representan las aristas y los vértices](explicación-de-cómo-se-elaboró-el-grafo,-qué-representan-las-aristas-y-los-vértices)
 6. [Explicación del cálculo de la distancia entre dos puntos geográficos](explicación-del-cálculo-de-la-distancia-entre-dos-puntos-geográficos)
 7. [Explicación de la implementación del factor tiempo del tráfico](explicación-de-la-implementación-del-factor-tiempo-del-tráfico)
 8. [Explicación de la implementación de la variabilidad del tráfico por zonas](explicación-de-la-implementación-de-la-variabilidad-del-tráfico-por-zonas)
