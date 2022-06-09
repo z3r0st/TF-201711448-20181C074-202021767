@@ -15,6 +15,9 @@
 3. Descripción de los datos consignados por calle.
 4. Descripción de la información consignada por intersección.
 5. Explicación de cómo se elaboró el grafo, qué representan las aristas y los vértices.
+6. Explicación del cálculo de la distancia entre dos puntos geográficos
+7. Explicación de la implementación del factor tiempo del tráfico
+8. Explicación de la implementación de la variabilidad del tráfico por zonas
 
 # Resumen Ejecutivo
 Para el presente trabajo, se ha procesado la información de las intersecciones de calles de la ciudad de San Francisco, California, Estados Unidos, almacenándolas mediante la creación de un grafo, en formato de listas de adyacencia. Para ello, se tomaron los interceptos como coordenadas con latitud y longitud, las cuales fueron representadas en el grafo como números enteros desde el 0 hasta 9644 (cantidad de interceptos menos 1).
@@ -94,3 +97,29 @@ Primero, realizamos la lectura del dataset en dónde consideramos la latitud y l
 Luego, tenemos la función donde se crea el grafo (la lista de adyacencia). Dentro creamos una función dónde calculamos la distancia entre el intercepto que se está evaluando y los otros interceptos de cada calle a las cuales pertenece. Este proceso se realiza para cada calle a la que pertenece el intercepto, y se almacena los datos en la lista distance, que almacena listas anidadas, cada una conteniendo el nodo y la distancia respecto al intercepto en evaluación. Luego, se ordena la lista según la distancia y se almacenan los dos más cercanos en la lista neighbours. Luego, se verifica si ambos vecinos son adyacentes por lados opuestos o si son dos nodos que se encuentran en la misma dirección. Dependiendo de esta validación, se añade respectivamente el nodo más cercano o ambos. Finalmente se devuelve el grafo creado.
 
 Finalmente, se genera grafo con la función creada y los datos guardados del dataset.
+
+# Explicación de la implementación de la variabilidad del tráfico por zonas
+
+Para concebir el tráfico, se formuló un modelo de dos capas, donde la primera capa es el tiempo y la segunda la zona (de la ciudad). Según el tiempo, como se explicó, se asigna un factor mínimo y máximo, que son descriptivos de la magnitud del tráfico vehicular en un intervalo de una hora. El mínimo es un multiplicador fijo, al cual se le añade, **dependiendo de la zona**, un valor entre 0 y la diferencia entre el factor máximo y mínimo:
+
+w = d * (fMIn + (fMax - fMin) * r)
+
+Donde: 
+* **w** = peso
+* **d** = distancia (entre los dos interceptos)
+* **fMin** = factor mínimo, de acuerdo al intervalo horario
+* **fMax** = factor máximo, de acuerdo al intervalo horario
+* **r** = factor seudo-aleatorio, determinado por la ubicación
+
+Ya que el tráfico no sigue patrones completamente aleatorios, donde una calle tendría un atasco y la siguiente estaría fluida, se optó por utilizar un generador de números seudo-aleatorios, que produce resultados más naturales, al suavizar la aleatoreidad. A continuación se presentan dos imágenes para ilustrar el contraste:
+
+Función aleatoria a lo largo del tiempo
+[Random function]()
+
+Función suedo-aleatoria a lo largo del tiempo
+[Pseudo-random function]()
+
+
+Específicamente, se utilizó la función de ruido Perlin-Noise, que recibe uno o más valores de entrada y retorna un número entre -1 y 1. La particularidad es que cuanto más cercanos sean los valores de entrada, habrá una cercanía entre los valores de salida.
+
+Para cada arista, se calculó unas coordenadas promedio (tomando las coordenadas de los dos interceptos que la limitan) y se ingresó el valor de latitud y longitud como argumentos a la función de ruido. Luego, se sumó 1 al resultado y se aplicó un reescalamiento lineal para pasar del rango [-1, 1] a [0, 2] y finalmente a [0, fMax - fMin].
