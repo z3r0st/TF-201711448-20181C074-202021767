@@ -10,15 +10,15 @@
 ## Junio, 2022
 
 # Tabla de Contenidos
-1. [Resumen Ejecutivo](resumen-ejecutivo)
-2. [Imagen estática de la ciudad o porción de ciudad elegida](imagen-estática-de-la-ciudad-o-porción-de-ciudad-elegida)
-3. [Descripción de los datos consignados por calle](descripción-de-los-datos-consignados-por-calle)
-4. [Descripción de la información consignada por intersección](descripción-de-la-información-consignada-por-intersección)
-5. [Explicación de cómo se elaboró el grafo, qué representan las aristas y los vértices](explicación-de-cómo-se-elaboró-el-grafo,-qué-representan-las-aristas-y-los-vértices)
-6. [Explicación del cálculo de la distancia entre dos puntos geográficos](explicación-del-cálculo-de-la-distancia-entre-dos-puntos-geográficos)
-7. [Explicación de la implementación del factor tiempo del tráfico](explicación-de-la-implementación-del-factor-tiempo-del-tráfico)
-8. [Explicación de la implementación de la variabilidad del tráfico por zonas](explicación-de-la-implementación-de-la-variabilidad-del-tráfico-por-zonas)
-9. [Explicación de los algoritmos de obtención de rutas más cortas](explicación-de-los-algoritmos-de-obtención-de-rutas-más-cortas)
+1. [Resumen Ejecutivo](#resumen-ejecutivo)
+2. [Imagen estática de la ciudad o porción de ciudad elegida](#imagen-estática-de-la-ciudad-o-porción-de-ciudad-elegida)
+3. [Descripción de los datos consignados por calle](#descripción-de-los-datos-consignados-por-calle)
+4. [Descripción de la información consignada por intersección](#descripción-de-la-información-consignada-por-intersección)
+5. [Explicación de cómo se elaboró el grafo, qué representan las aristas y los vértices](#explicación-de-cómo-se-elaboró-el-grafo-qué-representan-las-aristas-y-los-vértices)
+6. [Explicación del cálculo de la distancia entre puntos](#explicación-del-cálculo-de-la-distancia-entre-puntos)
+7. [Explicación de la implementación del factor tiempo del tráfico](#explicación-de-la-implementación-del-factor-tiempo-del-tráfico)
+8. [Explicación de la implementación de la variabilidad del tráfico por zonas](#explicación-de-la-implementación-de-la-variabilidad-del-tráfico-por-zonas)
+9. [Explicación de los algoritmos de obtención de rutas más cortas](#explicación-de-los-algoritmos-de-obtención-de-rutas-más-cortas)
 
 # Resumen Ejecutivo
 Para el presente trabajo, se ha procesado la información de las intersecciones de calles de la ciudad de San Francisco, California, Estados Unidos, almacenándolas mediante la creación de un grafo, en formato de listas de adyacencia. Para ello, se tomaron los interceptos como coordenadas con latitud y longitud, las cuales fueron representadas en el grafo como números enteros desde el 0 hasta 9644 (cantidad de interceptos menos 1).
@@ -187,6 +187,63 @@ Por lo tanto, al ingresar dos valores de entrada, se trabaja con dos dimensiones
 
 # Explicación de los algoritmos de obtención de rutas más cortas
 
-Para obtener las tres rutas más cortas, se tomó el algoritmo de Dijkstra como pilar de la solución. En primer lugar, se modificó el algoritmo de distra para que se pueda ingresar un punto de destino y un arreglo de padres. Este último sirve para poder determinar qué nodos del grafo pueden ser incluidos en el camino más corto, es decir, es una forma de que Dijkstra trabaje sobre un subconjunto del grafo que recibe. Además, el arreglo de padres se modificó para que almacene tanto el nodo padre como el costo de la arista que lo conecta con el hijo. Esto permite retornar tanto el arreglo del camino (la secuencia de nodos), como el costo particular para llegar del nodo i al nodo i+1.
+Para obtener las tres rutas más cortas, se tomó el *algoritmo de **Dijkstra*** como pilar de la solución. En primer lugar, se modificó el algoritmo para que se pueda ingresar un punto de destino y un arreglo de padres. Este último sirve para poder determinar qué nodos del grafo pueden ser incluidos en el camino más corto, es decir, es una forma de que **Dijkstra** trabaje sobre un subconjunto del grafo que recibe. Además, el arreglo de padres se modificó para que almacene tanto el nodo padre como el costo de la arista que lo conecta con el hijo. Esto permite retornar tanto el arreglo del camino (la secuencia de nodos), como el costo particular para llegar del nodo i al nodo i+1.
 
-El camino más corto se obtiene directamente como resultado de la ejecución del algoritmo de Dijkstra. Sin embargo, para obtener los otros caminos alternativos, se requiere un trabajo más expansivo, para lo cual se implementó el algoritmo de Yen. Este obtiene el enésimo camino más corto y lo toma como referencia para obtener el siguiente camino. Específicamente, a partir del último camino validado, se toman todos los posibles subconjuntos (tamaño de 0 a n-1), que se denomina camino raíz. Luego, se anula la arista que conecta el último nodo del conjunto raíz con el resto del camino y se marcan como visitados los nodos pertenecientes al conjunto raíz (asignándoles un valor en el arreglo de padres). Una vez realizado esta preparación, se llama a Dijkstra y se revierten los cambios mencionados. De este manera, se asegura que Dijkstra tome una porción del último camino más corto encontrado y luego lo complemente con un nuevo camino. Una vez que se tienen todos los posibles caminos más cortos, se toma el que tiene el menor costo total y se agrega como enésimo camino más corto. Se repite todo el proceso hasta que se llega al número de caminos que se busca obtener.
+El camino más corto se obtiene directamente como resultado de la ejecución del *algoritmo de **Dijkstra***. Sin embargo, para obtener los otros caminos alternativos, se requiere un trabajo más expansivo, para lo cual se implementó el *algoritmo de **Yen***. Este obtiene el enésimo camino más corto y lo toma como referencia para obtener el siguiente camino. Específicamente, a partir del último camino validado, se toman todos los posibles subconjuntos (tamaño de 0 a n-1), que se denomina camino raíz. Luego, se anula la arista que conecta el último nodo del conjunto raíz con el resto del camino y se marcan como visitados los nodos pertenecientes al conjunto raíz (asignándoles un valor en el arreglo de padres). Una vez realizado esta preparación, se llama a **Dijkstra** y se revierten los cambios mencionados. De este manera, se asegura que **Dijkstra** tome una porción del último camino más corto encontrado y luego lo complemente con un nuevo camino. Una vez que se tienen todos los posibles caminos más cortos, se toma el que tiene el menor costo total y se agrega como enésimo camino más corto. Se repite todo el proceso hasta que se llega al número de caminos que se busca obtener.
+
+## Pseudocódigo del algoritmo de Yen
+```
+function YenKSP(Graph, source, sink, K):
+    // Determine the shortest path from the source to the sink.
+    A[0] = Dijkstra(Graph, source, sink);
+    // Initialize the set to store the potential kth shortest path.
+    B = [];
+    
+    for k from 1 to K:
+        // The spur node ranges from the first node to the next to last node in the previous k-shortest path.
+        for i from 0 to size(A[k − 1]) − 2:
+            
+            // Spur node is retrieved from the previous k-shortest path, k − 1.
+            spurNode = A[k-1].node(i);
+            // The sequence of nodes from the source to the spur node of the previous k-shortest path.
+            rootPath = A[k-1].nodes(0, i);
+            
+            for each path p in A:
+                if rootPath == p.nodes(0, i):
+                    // Remove the links that are part of the previous shortest paths which share the same root path.
+                    remove p.edge(i,i + 1) from Graph;
+            
+            for each node rootPathNode in rootPath except spurNode:
+                remove rootPathNode from Graph;
+            
+            // Calculate the spur path from the spur node to the sink.
+            // Consider also checking if any spurPath found
+            spurPath = Dijkstra(Graph, spurNode, sink);
+            
+            // Entire path is made up of the root path and spur path.
+            totalPath = rootPath + spurPath;
+            // Add the potential k-shortest path to the heap.
+            if (totalPath not in B):
+                B.append(totalPath);
+            
+            // Add back the edges and nodes that were removed from the graph.
+            restore edges to Graph;
+            restore nodes in rootPath to Graph;
+                    
+        if B is empty:
+            // This handles the case of there being no spur paths, or no spur paths left.
+            // This could happen if the spur paths have already been exhausted (added to A), 
+            // or there are no spur paths at all - such as when both the source and sink vertices 
+            // lie along a "dead end".
+            break;
+        // Sort the potential k-shortest paths by cost.
+        B.sort();
+        // Add the lowest cost path becomes the k-shortest path.
+        A[k] = B[0];
+        // In fact we should rather use shift since we are removing the first element
+        B.pop();
+    
+    return A;
+```
+## Animación del Algoritmo de Yen
+![Alt Text](https://github.com/z3r0st/TF-201711448-20181C074-202021767/blob/main/img/Yen's_K-Shortest_Path_Algorithm%2C_K%3D3%2C_A_to_F.gif)
