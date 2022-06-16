@@ -18,6 +18,7 @@
 6. [Explicación del cálculo de la distancia entre dos puntos geográficos](explicación-del-cálculo-de-la-distancia-entre-dos-puntos-geográficos)
 7. [Explicación de la implementación del factor tiempo del tráfico](explicación-de-la-implementación-del-factor-tiempo-del-tráfico)
 8. [Explicación de la implementación de la variabilidad del tráfico por zonas](explicación-de-la-implementación-de-la-variabilidad-del-tráfico-por-zonas)
+9. [Explicación de los algoritmos de obtención de rutas más cortas](explicación-de-los-algoritmos-de-obtención-de-rutas-más-cortas)
 
 # Resumen Ejecutivo
 Para el presente trabajo, se ha procesado la información de las intersecciones de calles de la ciudad de San Francisco, California, Estados Unidos, almacenándolas mediante la creación de un grafo, en formato de listas de adyacencia. Para ello, se tomaron los interceptos como coordenadas con latitud y longitud, las cuales fueron representadas en el grafo como números enteros desde el 0 hasta 9644 (cantidad de interceptos menos 1).
@@ -183,3 +184,9 @@ Para cada arista, se calculó unas coordenadas promedio (tomando las coordenadas
 rango = [−√N/4,√N/4]
 
 Por lo tanto, al ingresar dos valores de entrada, se trabaja con dos dimensiones y el rango de salida es [-0.707, 0.707]. Por ello, se sumó 0.707 al resultado y se aplicó un reescalamiento lineal para pasar del rango [-0.707, 0.707] a [0, 1.414] y finalmente a [0, fMax - fMin].
+
+# Explicación de los algoritmos de obtención de rutas más cortas
+
+Para obtener las tres rutas más cortas, se tomó el algoritmo de Dijkstra como pilar de la solución. En primer lugar, se modificó el algoritmo de distra para que se pueda ingresar un punto de destino y un arreglo de padres. Este último sirve para poder determinar qué nodos del grafo pueden ser incluidos en el camino más corto, es decir, es una forma de que Dijkstra trabaje sobre un subconjunto del grafo que recibe. Además, el arreglo de padres se modificó para que almacene tanto el nodo padre como el costo de la arista que lo conecta con el hijo. Esto permite retornar tanto el arreglo del camino (la secuencia de nodos), como el costo particular para llegar del nodo i al nodo i+1.
+
+El camino más corto se obtiene directamente como resultado de la ejecución del algoritmo de Dijkstra. Sin embargo, para obtener los otros caminos alternativos, se requiere un trabajo más expansivo, para lo cual se implementó el algoritmo de Yen. Este obtiene el enésimo camino más corto y lo toma como referencia para obtener el siguiente camino. Específicamente, a partir del último camino validado, se toman todos los posibles subconjuntos (tamaño de 0 a n-1), que se denomina camino raíz. Luego, se anula la arista que conecta el último nodo del conjunto raíz con el resto del camino y se marcan como visitados los nodos pertenecientes al conjunto raíz (asignándoles un valor en el arreglo de padres). Una vez realizado esta preparación, se llama a Dijkstra y se revierten los cambios mencionados. De este manera, se asegura que Dijkstra tome una porción del último camino más corto encontrado y luego lo complemente con un nuevo camino. Una vez que se tienen todos los posibles caminos más cortos, se toma el que tiene el menor costo total y se agrega como enésimo camino más corto. Se repite todo el proceso hasta que se llega al número de caminos que se busca obtener.
