@@ -251,3 +251,7 @@ function YenKSP(Graph, source, sink, K):
 + Del trabajo se puede rescatar la cooperación del equipo de trabajo y la importancia de tener un registro de versiones para el progreso de este. 
 + Asimismo, el registro de información consultada durante el desarrollo del trabajo fue útil para su posterior consulta por otros miembros del equipo de trabajo y así, todos poder estar al mismo nivel conceptual.
 
+## Referencias
++ Claudia del Castillo (2013, junio). Waze: qué es, cómo funciona 	y para qué sirve. ComputerHoy. Recuperado de https://computerhoy.com/noticias/apps/waze-que-es-como-funciona-que-sirve-4231 [Consulta: 29 de junio del 2022].
++ Khan Academy (s.f.). Ruido de Perlin. Recuperado de https://es.khanacademy.org/computing/computer-programming/programming-natural-simulations/programming-noise/a/perlin-noise [Consulta: 12 de junio del 2022].
++ Jose Miguel (2011, abril). ¿Cómo calcular la distancia entre dos puntos geográficos en C#? (Fórmula de Haversine). GENBETA. Recuperado de https://www.genbeta.com/desarrollo/como-calcular-la-distancia-entre-dos-puntos-geograficos-en-c-formula-de-haversine [Consulta: 6 de junio del 2022].
