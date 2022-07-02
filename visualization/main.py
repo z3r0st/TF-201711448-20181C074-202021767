@@ -47,12 +47,8 @@ def create_graph(url):
                 if point != intercept:
                     neighbours.append([point, dis.calculateDistance(intercept, point)])
             
-            neighbours.sort(key=lambda ls: ls[1])
-            for i in range(len(neighbours)):
-                while i < len(neighbours) and neighbours[i][1] > 300:
-                    neighbours.pop(i)
-
             if len(neighbours) > 1:
+                neighbours.sort(key=lambda ls: ls[1])
                 neighbours = neighbours[0:2]
                 if dis.calculateDistance(neighbours[0][0], neighbours[1][0]) < neighbours[1][1]:
                     neighbours.pop()
@@ -127,9 +123,9 @@ def load_locations(path):
     return Loc
 
 
-# G, Loc= create_graph("https://raw.githubusercontent.com/z3r0st/TF-201711448-20181C074-202021767/main/SF_street_intersections.csv")
+G, Loc= create_graph("https://raw.githubusercontent.com/z3r0st/TF-201711448-20181C074-202021767/main/SF_street_intersections.csv")
 
-# write_graph_al("san_francisco_streets.al", G)
-# write_locations("coordinates.txt", Loc)
+write_graph_al("san_francisco_streets.al", G)
+write_locations("coordinates.txt", Loc)
 
 
