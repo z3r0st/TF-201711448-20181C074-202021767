@@ -6,8 +6,8 @@
   const urlgraph = "graph";
   const graph = await d3.json(urlgraph);
 
-  const s = 8741 // Math.floor(Math.random() * graph.g.length);
-  const t = 732 // Math.floor(Math.random() * graph.g.length);
+  const s = Math.floor(Math.random() * graph.g.length);
+  const t = Math.floor(Math.random() * graph.g.length);
   const urlpaths = `paths/${s}/${t}`
   const paths = await d3.json(urlpaths);
 
