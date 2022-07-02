@@ -68,15 +68,16 @@
 
   const edges = [];
   for (const u in graph.g) {
-    for (const [v, w] of graph.g[u]) {
-      edges.push([graph.loc[u], graph.loc[v], w])
+    for (const [v, w, p] of graph.g[u]) {
+      edges.push([graph.loc[u], graph.loc[v], w, p])
+      console.log(p, ' ')
     }
   }
-  const extentw = d3.extent(edges, d => d[2]);
+  const extentw = d3.extent(edges, d => d[3]);
   const scalecolor = d3.scaleLinear()
     .domain(extentw)
     .range([100, 0]);
-  const color = d => `hsla(${scalecolor(d[2])}, 100%, 50%, 0.5)`
+  const color = d => `hsla(${scalecolor(d[3])}, 100%, 50%, 0.5)`
   render(edges, color, 2)
   
   function dealWithPath(path, color) {
@@ -86,7 +87,7 @@
       points.push([graph.loc[head], graph.loc[path[head]]]);
       head = path[head];
     }
-    render(points, d => color, 4)
+    render(points, d => color, 5)
   }
   dealWithPath(paths.bestpath, "rgba(0, 128, 0, 0.5)")
   dealWithPath(paths.path1, "rgba(255, 165, 0, 0.5)")

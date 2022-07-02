@@ -106,7 +106,7 @@ def write_locations(path, Loc):
     n, c= len(Loc), 0
     
     for lon, lat  in Loc:
-        f.write(f"{lon:0f},{lat:0f} ")
+        f.write(f"{lon},{lat} ")
         if c < n - 1: f.write('\n')
         c += 1
 
@@ -123,9 +123,9 @@ def load_locations(path):
     return Loc
 
 
-# G, Loc= create_graph("https://raw.githubusercontent.com/z3r0st/TF-201711448-20181C074-202021767/main/SF_street_intersections.csv")
+G, Loc= create_graph("https://raw.githubusercontent.com/z3r0st/TF-201711448-20181C074-202021767/main/SF_street_intersections.csv")
 
-# write_graph_al("san_francisco_streets.al", G)
-# write_locations("coordinates.txt", Loc)
+write_graph_al("san_francisco_streets.al", G)
+write_locations("coordinates.txt", Loc)
 
 

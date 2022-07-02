@@ -21,4 +21,8 @@ def addTraffic(G, nodeToIntercept, time):
                 return x*(r - l)/(0.707 - -0.707) # E [-0.707, 0.707]
             zoneFactor = linearRescale(zoneFactor, tMin, tMax)
             # convert to int because < 1m is a negligible value
-            G[u][i][1] = int(w * (tMin + zoneFactor))
+            G[u][i][1] = (w * (tMin + zoneFactor))
+            # G[u][i][1] = (w * (tMin + zoneFactor))/1000 + 1000
+            G[u][i].append(noise([lon, lat])+1000)
+            # for distance + traffic visualization: 
+            #G[u][i].append((w * (tMin + zoneFactor)) if (w * (tMin + zoneFactor)) < 300 else 300)

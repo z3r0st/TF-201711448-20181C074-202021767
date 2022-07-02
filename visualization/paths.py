@@ -26,7 +26,7 @@ def dijkstra(G, source, sink=None, parent=None):
             cost.reverse()
             return [path, cost]
         
-        for v, w in G[u]:
+        for v, w, _ in G[u]:
             if parent[v] is None and w > 0:
                 hq.heappush(heap, (c + w, v, u))
 
@@ -52,7 +52,7 @@ def YenKSP(G, source, sink, K=3):
                 if path[0][:i+1] == rootPath[0]:
                     u = path[0][i]
                     for j in range(len(G[u])):
-                        v, w = G[u][j]
+                        v, w, _ = G[u][j]
                         if v == path[0][i+1] and w != 0: 
                             disabledEdges.append((u, j, w))
                             G[u][j][1] = 0

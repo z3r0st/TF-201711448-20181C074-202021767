@@ -6,8 +6,7 @@ import main
 import paths as path_finding
 from perlin_noise import PerlinNoise
 
-# python -m pip install requests
-G, Loc= main.create_graph_with_traffic("san_francisco_streets.al", "coordinates.txt", "09:38:29")
+G, Loc= main.create_graph_with_traffic("san_francisco_streets.al", "coordinates.txt", "23:38:29")
 
 
 def graph():
@@ -15,8 +14,7 @@ def graph():
 
 
 def paths(s, t):
-    tuple = path_finding.YenKSP(G, s, t, 3)
-    paths, _ = tuple
+    paths, _ = path_finding.YenKSP(G, s, t, 3)
 
     n = len(G)
     parents = [[-1]*n, [-1]*n, [-1]*n]
