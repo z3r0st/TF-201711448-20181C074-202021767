@@ -250,6 +250,8 @@ function YenKSP(Graph, source, sink, K):
 ## Conclusiones
 + Del trabajo se puede rescatar la cooperación del equipo de trabajo y la importancia de tener un registro de versiones para el progreso de este. 
 + Asimismo, el registro de información consultada durante el desarrollo del trabajo fue útil para su posterior consulta por otros miembros del equipo de trabajo y así, todos poder estar al mismo nivel conceptual.
++ Por otro lado, resaltar la importancia de trabajar con un formato adaptable del conjunto de datos recopilado para su fácil lectura y entendimiento para su posterior desarrollo dentro del margen de lo solicitado por el trabajo.
++ También resaltar la importancia del contexto de desarrollo del trabajo, dándole a este un sentido y finalidad.
 
 ## Referencias
 + Claudia del Castillo (2013, junio). Waze: qué es, cómo funciona 	y para qué sirve. ComputerHoy. Recuperado de https://computerhoy.com/noticias/apps/waze-que-es-como-funciona-que-sirve-4231 [Consulta: 29 de junio del 2022].
