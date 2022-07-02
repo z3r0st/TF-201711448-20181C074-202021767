@@ -72,7 +72,7 @@ def create_graph_with_traffic(graph, locations, time):
 def write_graph_al(path, G):
     f = open(path, "w")
     f.write(str(len(G))+'\n')
-    c = 0
+    n, c = len(G), 0
     for line in G:
         f.write(str(c)+' ')
         if len(line) > 0:
@@ -80,7 +80,7 @@ def write_graph_al(path, G):
                 f.write(f"{v:.0f},{w:.0f} ")
         else:
             f.write('-')
-        f.write('\n')
+        if c < n - 1: f.write('\n')
         c += 1
 
 
@@ -88,26 +88,27 @@ def load_graph(path):
     with open(path, "r") as f:
         n = int(f.readline().strip())
         G = [[] for _ in range(n)]
-        
+        c=0
         for line in f:
-            if line == '\n': continue
+            c += 1
             line = line.strip().split()
             u = int(line[0])
             if line[1] == '-': continue
             for pair in line[1:]:
-                print(f"{pair}, {len(pair)}")
-                G[u].append([int(v), int(w)] for v, w in pair.split(sep=','))
-
+                v, w = pair.split(sep=',')
+                G[u].append([int(v), int(w)])
     return G
 
 
 def write_locations(path, Loc):
     f = open(path, "w")
-    f.write(str(len(Loc))+'\n')
+    f.write(f"{len(Loc)}\n")
+    n, c= len(Loc), 0
     
     for lon, lat  in Loc:
         f.write(f"{lon:0f},{lat:0f} ")
-        f.write('\n')
+        if c < n - 1: f.write('\n')
+        c += 1
 
 
 def load_locations(path):
@@ -116,7 +117,6 @@ def load_locations(path):
         Loc = []
         
         for line in f:
-            if line == '\n': continue
             lon, lat = line.strip().split(',')
             Loc.append((float(lon), float(lat)))
 
