@@ -247,3 +247,7 @@ function YenKSP(Graph, source, sink, K):
 ```
 ## Animación del Algoritmo de Yen
 ![Alt Text](https://github.com/z3r0st/TF-201711448-20181C074-202021767/blob/main/img/Yen's_K-Shortest_Path_Algorithm%2C_K%3D3%2C_A_to_F.gif)
+## Conclusiones
++ Del trabajo se puede rescatar la cooperación del equipo de trabajo y la importancia de tener un registro de versiones para el progreso de este. 
++ Asimismo, el registro de información consultada durante el desarrollo del trabajo fue útil para su posterior consulta por otros miembros del equipo de trabajo y así, todos poder estar al mismo nivel conceptual.
+
