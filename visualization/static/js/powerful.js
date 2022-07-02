@@ -6,8 +6,8 @@
   const urlgraph = "graph";
   const graph = await d3.json(urlgraph);
 
-  const s = Math.floor(Math.random() * graph.g.length);
-  const t = Math.floor(Math.random() * graph.g.length);
+  const s = 8741 // Math.floor(Math.random() * graph.g.length);
+  const t = 732 // Math.floor(Math.random() * graph.g.length);
   const urlpaths = `paths/${s}/${t}`
   const paths = await d3.json(urlpaths);
 
@@ -70,7 +70,7 @@
   for (const u in graph.g) {
     for (const [v, w, p] of graph.g[u]) {
       edges.push([graph.loc[u], graph.loc[v], w, p])
-      console.log(p, ' ')
+      console.log(w, ' ')
     }
   }
   const extentw = d3.extent(edges, d => d[3]);

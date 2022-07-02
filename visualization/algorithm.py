@@ -6,7 +6,7 @@ import main
 import paths as path_finding
 from perlin_noise import PerlinNoise
 
-G, Loc= main.create_graph_with_traffic("san_francisco_streets.al", "coordinates.txt", "23:38:29")
+G, Loc= main.create_graph_with_traffic("san_francisco_streets.al", "coordinates.txt", "07:38:29")
 
 
 def graph():
